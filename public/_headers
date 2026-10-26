@@ -1,0 +1,12 @@
+# CF Pages headers — read from out/ at deploy time.
+# Gated tiers must be noindex at the HTTP layer too (CF Access blocks crawlers
+# at the edge, but the header is the belt to Access's suspenders).
+
+/public/*
+  X-Robots-Tag: index, follow
+
+/semi/*
+  X-Robots-Tag: noindex, nofollow
+
+/private/*
+  X-Robots-Tag: noindex, nofollow

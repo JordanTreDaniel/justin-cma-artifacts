@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Client CMA — Q4 2026</title>
+  <meta name="description" content="Client-facing sample CMA presented behind Cloudflare Access Email OTP (24h session)." />
+  <meta property="og:title" content="Sample Client CMA — Q4 2026" />
+  <meta property="og:description" content="Client-facing sample CMA presented behind Cloudflare Access Email OTP (24h session)." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://cma.resource-realty.org/semi/sample-client-cma/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sample Client CMA — Q4 2026" />
+  <meta name="twitter:description" content="Client-facing sample CMA presented behind Cloudflare Access Email OTP (24h session)." />
+  <!-- noindex: enforced at the edge for non-public tiers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #f8f6f3;
+      --surface: #ffffff;
+      --foreground: #1a1814;
+      --body-ink: #6b6057;
+      --primary: #1B4D8E;
+      --primary-hover: #2C5FA3;
+      --secondary: #e8e0d5;
+      --muted: #f0ece6;
+      --muted-fg: #8a7d6a;
+      --accent: #e8f0f9;
+      --accent-text: #5c4e3a;
+      --border: #e0d8cf;
+      --outline: #c5b9aa;
+      --positive: #57a773;
+      --radius: 0.625rem;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-mono: 'Geist Mono', ui-monospace, 'Courier New', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    ::selection { background: var(--accent); }
+    .hero {
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .brand img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      background: var(--surface);
+    }
+    .brand .wordmark {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted-fg);
+    }
+    .hero .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2rem, 4vw, 2.375rem);
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 40rem;
+      color: var(--body-ink);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 8px;
+    }
+    .cta:hover { background: var(--primary-hover); }
+    .section {
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    .card h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.875rem;
+      margin-bottom: 0.75rem;
+    }
+    .card p { color: var(--body-ink); margin-bottom: 0.75rem; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.125rem;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted-fg);
+      margin-bottom: 0.375rem;
+    }
+    .stat .value {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      color: var(--foreground);
+    }
+    .stat .value.positive { color: var(--positive); }
+    .note {
+      margin-top: 1.25rem;
+      border-left: 4px solid var(--primary);
+      background: var(--accent);
+      color: var(--accent-text);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="brand">
+      <!-- LOGO RULE: correct asset only. NEVER Resource_Realty_Logo.jpg
+           (misspelled "REALITY" — deprecated rollback asset; a 200 is not
+           permission). -->
+      <img src="/Resource_Realty_Logo_correct_email.jpeg" alt="Resource Realty" />
+      <span class="wordmark">Comparative Market Analysis</span>
+    </div>
+    <div class="eyebrow">semi · sample-client-cma</div>
+    <h1>Sample Client CMA — Q4 2026</h1>
+    <p>Client-facing sample CMA presented behind Cloudflare Access Email OTP (24h session).</p>
+    <a class="cta" href="https://cma.resource-realty.org/semi/sample-client-cma/">Open full CMA</a>
+  </header>
+  <main class="section">
+    <div class="card">
+      <h2>Example artifact — render path test</h2>
+      <p>
+        This is a working sample registered in <code>content/registry.ts</code>
+        so the registry → MagazineShell → static-export path is testable
+        immediately. Replace it with real content before any client sees it.
+      </p>
+      <p>
+        Self-contained, script-free HTML themed to Resource Realty: linen
+        surface, Playfair Display headlines, DM Sans body, Boardwalk Blue
+        actions. MagazineShell preserves &lt;style&gt; blocks and Google Fonts
+        links; it strips &lt;script&gt; tags — do not add scripts to this file.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Sample range</div>
+          <div class="value">$412k – $438k</div>
+        </div>
+        <div class="stat">
+          <div class="label">Comparables</div>
+          <div class="value">6</div>
+        </div>
+        <div class="stat">
+          <div class="label">Confidence</div>
+          <div class="value positive">High</div>
+        </div>
+      </div>
+      <div class="note">
+        SEMI TIER: gated by CF Access Email OTP, 24h session (app justin-cma-semi). noindex. Replace this sample with the real client deliverable.
+      </div>
+    </div>
+  </main>
+</body>
+</html>

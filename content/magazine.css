@@ -1,0 +1,80 @@
+/* Resource Realty base for MagazineShell-rendered content.
+ *
+ * The upstream html-magazine palette (near-black + pink/cyan) is SUPERSEDED
+ * for Justin — every artifact must read like resource-realty.org: linen
+ * surfaces, Playfair Display headlines, DM Sans body, Boardwalk Blue actions.
+ *
+ * Deliberately minimal. Content HTML fragments are self-contained and ship
+ * their own RR-themed <style> blocks (add-artifact.sh generates them with the
+ * full token set). Only add rules here that fragments do NOT define —
+ * layout classes like .hero / .section / .card belong to the fragment, and a
+ * more specific `.magazine-root .x` rule here would silently override them.
+ */
+
+.magazine-root {
+  --background: #f8f6f3;
+  --surface: #ffffff;
+  --foreground: #1a1814;
+  --body-ink: #6b6057;
+  --primary: #1b4d8e;
+  --primary-hover: #2c5fa3;
+  --secondary: #e8e0d5;
+  --muted: #f0ece6;
+  --muted-fg: #8a7d6a;
+  --accent: #e8f0f9;
+  --accent-text: #5c4e3a;
+  --border: #e0d8cf;
+  --outline: #c5b9aa;
+  --positive: #57a773;
+  --radius: 0.625rem;
+  /* Google Fonts <link> tags live in each fragment's <head> (MagazineShell
+     preserves them). Fallbacks are generic so an offline render still holds. */
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'Courier New', monospace;
+
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.magazine-root *,
+.magazine-root *::before,
+.magazine-root *::after {
+  box-sizing: border-box;
+}
+
+.magazine-root ::selection {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+.magazine-root img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Content fragments own their link styling. This is a *default* only —
+   written with :where() so it never outranks a fragment's own rule.
+   (A plain `.magazine-root a` would have specificity 0-1-1 and beat the
+   fragment's `.cta` (0-1-0), painting Boardwalk-Blue text on a
+   Boardwalk-Blue button — invisible.) */
+.magazine-root :where(a) {
+  color: var(--primary);
+}
+
+/* Fade-in — driven by MagazineInteractions (IntersectionObserver) */
+.magazine-root .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.magazine-root .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

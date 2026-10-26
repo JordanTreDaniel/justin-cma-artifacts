@@ -1,0 +1,308 @@
+@import 'tailwindcss';
+
+/* ===========================================================================
+   Resource Realty — linen theme (web variant)
+   Source of truth: justins-skills/skills/artifacts/SKILL.md § Resource Realty
+   theme. Do NOT use the upstream dark html-magazine palette here — this site
+   must look like resource-realty.org.
+   Email/PDF variant (ink #0a0a0a / gold #D4AF37) is a DIFFERENT system and is
+   not used for web artifacts.
+   =========================================================================== */
+
+:root {
+  --background: #f8f6f3; /* linen */
+  --surface: #ffffff; /* white cards float on linen */
+  --foreground: #1a1814; /* walnut — headlines + primary text */
+  --body-ink: #6b6057; /* muted ink — paragraph copy */
+  --primary: #1b4d8e; /* Boardwalk Blue — links, buttons */
+  --primary-hover: #2c5fa3;
+  --secondary: #e8e0d5; /* warm surface — panels, table headers */
+  --muted: #f0ece6; /* wells, code/quote blocks */
+  --muted-fg: #8a7d6a; /* Warm Tan — labels, captions */
+  --accent: #e8f0f9; /* info callouts, highlighted rows */
+  --accent-text: #5c4e3a; /* emphasis / tag text */
+  --border: #e0d8cf; /* 1px rules, card outlines */
+  --outline: #c5b9aa; /* stronger rules, input borders */
+  --positive: #57a773; /* positive deltas ONLY */
+
+  --radius: 0.625rem; /* 10px base → sm 6 / md 8 / lg 10 / xl 14 */
+
+  /* Fallbacks in every var() chain: if a next/font variable is ever missing,
+     the declaration must still resolve to a real stack (an unguarded var()
+     with no fallback invalidates the whole custom property). */
+  --font-sans: var(--font-dm-sans, 'DM Sans'), 'DM Sans', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: var(--font-playfair, 'Playfair Display'),
+    'Playfair Display', Georgia, serif;
+  --font-mono: var(--font-geist-mono, 'Geist Mono'), 'Geist Mono',
+    ui-monospace, 'Courier New', monospace;
+
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-body-ink: var(--body-ink);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-fg: var(--muted-fg);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-border: var(--border);
+  --color-outline: var(--outline);
+  --color-positive: var(--positive);
+  --font-sans: var(--font-dm-sans, 'DM Sans');
+  --font-serif: var(--font-playfair, 'Playfair Display');
+  --font-mono: var(--font-geist-mono, 'Geist Mono');
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::selection {
+  background: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* --------------------------------------------------------------------------
+   Site shell (landing + tier indexes)
+   -------------------------------------------------------------------------- */
+
+.site {
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.site-inner {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.brand .wordmark {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted-fg);
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.site h1 {
+  font-size: clamp(2rem, 4vw, 2.375rem);
+  line-height: 1.18;
+  margin-bottom: 0.75rem;
+}
+
+.lede {
+  max-width: 40rem;
+  color: var(--body-ink);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+}
+
+.tier-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tier-card:hover {
+  border-color: var(--outline);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.tier-card .tier-label {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  margin-bottom: 0.375rem;
+}
+
+.tier-card .tier-blurb {
+  color: var(--body-ink);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.tier-card .tier-gate {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-fg);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.artifact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.artifact-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.artifact-card:hover {
+  border-color: var(--outline);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.artifact-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.artifact-card p {
+  color: var(--body-ink);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted-fg);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+.cta:hover {
+  background: var(--primary-hover);
+}
+
+.back-link {
+  font-size: 13px;
+  color: var(--muted-fg);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+/* Access-gate badge (visual only — the edge does the enforcing) */
+.gate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--accent);
+  color: var(--accent-text);
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.gate-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.site-footer {
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted-fg);
+}
